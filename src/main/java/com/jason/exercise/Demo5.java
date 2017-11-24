@@ -2,6 +2,8 @@ package com.jason.exercise;
 
 import com.jason.common.DListNode;
 import com.jason.common.ListNode;
+import com.jason.common.ListPrint;
+import com.jason.common.Print;
 import com.sun.org.apache.bcel.internal.generic.DLOAD;
 import org.junit.jupiter.api.Test;
 
@@ -201,4 +203,133 @@ public class Demo5 {
 
     }
 
+    @Test
+    public void test4(){
+        ListNode f1 = new ListNode(2);
+        ListNode f2 = new ListNode(3);
+        f1.next=f2;
+        ListNode f3 = new ListNode(4);
+        f2.next=f3;
+        ListNode f4 = new ListNode(7);
+        f3.next=f4;
+        ListNode f5 = new ListNode(9);
+        f4.next=f5;
+        ListNode f6 = new ListNode(10);
+        f5.next=f6;
+        ListNode n = removeListNode(f1,1);
+        ListPrint.print(n);
+    }
+
+    public ListNode removeListNode(ListNode node,int k){
+        if (node==null||k<1)
+            return node;
+
+        ListNode head = node;
+        while (head!=null){
+            k--;
+            head = head.next;
+        }
+        if (k==0)
+            return node.next;
+        if (k>0)
+            return node;
+        ListNode cur = node;
+        if (k<0){
+            while (++k!=0){
+                cur = cur.next;
+            }
+            cur.next=cur.next.next;
+        }
+        return node;
+    }
+
+    @Test
+    public void dTest(){
+        DListNode f1 = new DListNode(2);
+        f1.pre=null;
+        DListNode f2 = new DListNode(3);
+        f1.next=f2;
+        f2.pre=f1;
+        DListNode f3 = new DListNode(4);
+        f2.next=f3;
+        f3.pre=f2;
+        DListNode f4 = new DListNode(7);
+        f3.next=f4;
+        f4.pre=f3;
+        DListNode f5 = new DListNode(9);
+        f4.next=f5;
+        f5.pre=f4;
+        DListNode f6 = new DListNode(10);
+        f5.next=f6;
+        f6.pre=f5;
+//        DListNode n= removeDListNode(f1,1);
+        DListNode n= reverse(f1,85);
+        Print.print(n);
+
+    }
+
+    public DListNode removeDListNode(DListNode node,int k){
+        if (node==null||k<1)
+            return node;
+        DListNode head = node;
+        while (head!=null){
+            k--;
+            head = head.next;
+        }
+        if (k==0){
+            DListNode d = node.next;
+            d.pre=null;
+            return d;
+        }
+        if (k>1)
+            return node;
+        if (k<0){
+            DListNode h = node;
+            while (++k!=0){
+                h = h.next;
+            }
+            DListNode tmp = h.next.next;
+            h.next = tmp;
+            if (tmp!=null){
+                tmp.pre = h;
+            }
+        }
+        return node;
+    }
+
+    /**
+     * 遍历到链表尾，在倒序到第k-1元素
+     * @param node
+     * @param k
+     */
+    public DListNode reverse(DListNode node,int k){
+        if (node==null||k<1)
+            return node;
+        DListNode head = node;
+        int count = 0;
+        while (head!=null){
+            count++;
+            DListNode next = head.next;
+            if (next!=null)
+                head = next;
+            else
+                break;
+        }
+        if (k == 1){
+            head.pre.next=null;
+            return node;
+        }
+        if (k>count)
+            return node;
+        while (head!=null&&(k-2)!=0){
+            head = head.pre;
+            k--;
+        }
+        DListNode pre = head.pre.pre;
+        head.pre=pre;
+        if (pre!=null){
+            pre.next=head;
+        }
+        return node;
+    }
 }
