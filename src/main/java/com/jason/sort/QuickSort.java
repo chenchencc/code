@@ -1,7 +1,6 @@
 package com.jason.sort;
 
-import org.junit.jupiter.api.Test;
-
+import org.junit.Test;
 public class QuickSort {
 
     /**

@@ -1,8 +1,7 @@
 package com.jason.sort;
 
 import com.jason.common.Print;
-import org.junit.jupiter.api.Test;
-
+import org.junit.Test;
 public class Sort3 {
 
     @Test

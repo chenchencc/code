@@ -20,7 +20,7 @@ public class Test {
 
     }
 
-    @org.junit.jupiter.api.Test
+    @org.junit.Test
 public void test(){
     try {
 

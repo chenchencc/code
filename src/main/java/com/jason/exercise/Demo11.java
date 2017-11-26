@@ -1,7 +1,7 @@
 package com.jason.exercise;
 
-import org.junit.jupiter.api.Test;
-
+import com.jason.common.Print;
+import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -28,6 +28,13 @@ import java.util.stream.Collectors;
  */
 public class Demo11 {
 
+    @Test
+    public void test(){
+        int[][] a = new int[][]{{1,5,9,13},{2,6,10,14},{3,7,11,15},{4,8,12,16}};
+        // print(a);
+        test1(a);
+    }
+
     public void print(int[][] a){
         for (int i=0;i<a.length;i++){
             for (int j=i;j>=0;j--){
@@ -36,22 +43,28 @@ public class Demo11 {
             System.out.println();
         }
 
-        for (int i=a.length-1;i>0;i--){
-            //for (int )
-        }
+
 
     }
 
 
-    @Test
-    public void test(){
-        int[][] a = new int[][]{{1,5,9,13},{2,6,10,14},{3,7,11,15},{4,8,12,16}};
-       // print(a);
-        List<Integer> li = Arrays.asList(1,5,9,13);
-        Collections.fill(li,0);
-        li.set(3,12);
-        li.stream().forEach(System.out::println);
-        double b = 13.45/2.31;
-        System.out.println(b);
+    /**
+     * 方式一：一个正方形a的长度为a.length,则打印完这个正方形需要2*a.length-1行
+     * 当打印的行数p大于正方形的长度时，a[x][y] x=3,y=p-x再做减动作,x>=p-x,y<=x
+     * @param a
+     */
+    public void test1(int[][] a){
+        for (int i=0;i<2*a.length-1;i++){
+            int m=i;
+            if (i>a.length-1)
+                m = 3;
+            int n=i-m;
+            int p = m;
+            int q = n;
+            for (;m>=q&&n<=p;m--,n++){
+                    System.out.print(a[m][n]);
+            }
+            System.out.println();
+        }
     }
 }

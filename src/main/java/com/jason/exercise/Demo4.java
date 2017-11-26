@@ -1,8 +1,7 @@
 package com.jason.exercise;
 
 import com.jason.common.ListNode;
-import org.junit.jupiter.api.Test;
-
+import org.junit.Test;
 public class Demo4 {
 
     /**

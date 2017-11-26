@@ -1,8 +1,7 @@
 package com.jason.sort;
 
 import com.jason.common.Print;
-import org.junit.jupiter.api.Test;
-
+import org.junit.Test;
 import java.math.BigDecimal;
 
 public class Sort4 {

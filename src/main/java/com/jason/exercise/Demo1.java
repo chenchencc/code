@@ -1,7 +1,6 @@
 package com.jason.exercise;
 
-import org.junit.jupiter.api.Test;
-
+import org.junit.Test;
 import java.util.Stack;
 
 public class Demo1 {
