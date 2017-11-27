@@ -2,6 +2,8 @@ package com.jason.exercise;
 
 import com.jason.common.Print;
 import org.junit.Test;
+
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -33,6 +35,7 @@ public class Demo11 {
         int[][] a = new int[][]{{1,5,9,13},{2,6,10,14},{3,7,11,15},{4,8,12,16}};
         // print(a);
         test1(a);
+        System.out.println(new BigDecimal(-1561/0.2423).longValue());
     }
 
     public void print(int[][] a){
