@@ -18,7 +18,8 @@ public class Demo13 {
     /**
      * 思路一：
      */
-    public void print(){
+    public void print(int[][] a){
+        int i=0,j=0;
 
     }
 }
