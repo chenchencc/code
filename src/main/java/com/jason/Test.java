@@ -4,10 +4,10 @@ import java.math.BigDecimal;
 
 public class Test {
     public static void main(String[] args) {
-        BigDecimal b = new BigDecimal(1600);
+        BigDecimal b = new BigDecimal(1561165);
         BigDecimal b1 = new BigDecimal(19);
 
-        long avgDuration = b.divide(b1,2,BigDecimal.ROUND_HALF_UP).divide(new BigDecimal(60)).longValue();
+        double avgDuration = b.divide(b1,4,BigDecimal.ROUND_HALF_UP).doubleValue();
         System.out.println(avgDuration);
     }
 }
