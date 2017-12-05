@@ -25,7 +25,6 @@ public class ZKTest {
         });
 
 
-
         //创建节点
         zkClient.createPersistent(path);
         Thread.sleep(1000);
