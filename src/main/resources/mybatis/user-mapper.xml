@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jason.dao.MacDao">
+
+    <!-- 获取实体 -->
+    <select id="getAll" resultType="string" parameterType="long"  >
+        SELECT mac FROM nr_black_mac WHERE storeId=#{storeId}
+    </select>
+
+    <insert id="insert" parameterType="com.jason.domain.BlackMacinfo">
+        INSERT INTO nr_black_mac(id,storeId,mac) VALUES
+        (#{id,jdbcType=BIGINT},#{storeId,jdbcType=BIGINT},#{mac,jdbcType=VARCHAR})
+    </insert>
+
+    <select id="findByMac" parameterType="map" resultType="string">
+        SELECT mac FROM nr_black_mac
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            <if test="id!=null and id>0">
+                and id=#{id}
+            </if>
+            <if test="storeId!=null">
+                and storeId = #{storeId}
+            </if>
+            <if test="mac!=null">
+                and mac=#{mac}
+            </if>
+        </trim>
+    </select>
+</mapper>
