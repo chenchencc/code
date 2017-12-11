@@ -1,5 +1,6 @@
 package com.jason.mybatis;
 
+import com.jason.dao.MacDao;
 import com.jason.domain.BlackMacinfo;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -28,16 +29,17 @@ public class Test {
              */
             String statement = "com.jason.dao.MacDao.getAll";
             List<BlackMacinfo> macinfoList = session.selectList(statement);
+            System.out.println(macinfoList);
+            /**
+             * 第二种方式: 执行更清晰和类型安全的代码
+             */
+            /*MacDao macDao = session.getMapper(MacDao.class);
+            List<BlackMacinfo> user = macDao.getAll();
+            System.out.println(user);*/
         }
         finally {
             session.close();
         }
 
-        /**
-         * 第二种方式: 执行更清晰和类型安全的代码
-         */
-//        UserDao userDao = session.getMapper(UserDao.class);
-//        user = userDao.getById(1);
-//        System.out.println(user);
     }
 }

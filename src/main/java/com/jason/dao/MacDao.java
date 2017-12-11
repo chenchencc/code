@@ -12,4 +12,6 @@ public interface MacDao {
     void insert(BlackMacinfo blackMacinfo);
 
     String findByMac(Map<String,Object> map);
+
+    List<BlackMacinfo> getById(long id);
 }

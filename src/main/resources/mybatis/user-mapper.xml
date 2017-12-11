@@ -3,15 +3,20 @@
 
 <mapper namespace="com.jason.dao.MacDao">
 
-    <!-- 获取实体 -->
-    <select id="getAll" resultType="string" parameterType="long"  >
-        SELECT mac FROM nr_black_mac WHERE storeId=#{storeId}
+
+    <!-- 获取实体 WHERE storeId=#{storeId}-->
+    <select id="getAll" resultType="string" parameterType="long">
+        SELECT mac FROM nr_black_mac
     </select>
 
     <insert id="insert" parameterType="com.jason.domain.BlackMacinfo">
         INSERT INTO nr_black_mac(id,storeId,mac) VALUES
         (#{id,jdbcType=BIGINT},#{storeId,jdbcType=BIGINT},#{mac,jdbcType=VARCHAR})
     </insert>
+
+    <select id="getById" parameterType="long" resultType="com.jason.domain.BlackMacinfo">
+        SELECT id,storeId,mac FROM nr_black_mac where id=#{id}
+    </select>
 
     <select id="findByMac" parameterType="map" resultType="string">
         SELECT mac FROM nr_black_mac
