@@ -33,9 +33,9 @@ public class Test {
             /**
              * 第二种方式: 执行更清晰和类型安全的代码
              */
-            /*MacDao macDao = session.getMapper(MacDao.class);
+            MacDao macDao = session.getMapper(MacDao.class);
             List<BlackMacinfo> user = macDao.getAll();
-            System.out.println(user);*/
+            System.out.println(user);
         }
         finally {
             session.close();
