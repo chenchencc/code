@@ -41,5 +41,6 @@ demo38:二维数组中的查找 √
 demo39:替换空格 √
 demo40:从尾到头打印链表 √
 demo41:字符串中句子的反转（比如ABC DEF，输出DEF ABC）
+demo42:KMP abcdefg  efg是不是它的子串
 排序部分：
 demo1:桶排序
