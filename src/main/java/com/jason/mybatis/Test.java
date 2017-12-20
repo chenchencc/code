@@ -18,7 +18,7 @@ public class Test {
 
         // 构建sqlSession工厂
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
-        // 获取sqlSession
+        // 获取sqlSession  根据前面解析配置文件形成的一个configuration对象和Executor对象调用DefaultSqlSession的构造方法返回一个SqlSession
         SqlSession session = sqlSessionFactory.openSession();
 
         BlackMacinfo info ;
@@ -27,14 +27,14 @@ public class Test {
             /**
              * 第一种方式: 直接执行已映射的 SQL 语句
              */
-            String statement = "com.jason.dao.MacDao.getAll";
-            List<BlackMacinfo> macinfoList = session.selectList(statement);
-            System.out.println(macinfoList);
+//            String statement = "com.jason.dao.MacDao.getAll";
+//            List<BlackMacinfo> macinfoList = session.selectList(statement);
+//            System.out.println(macinfoList);
             /**
              * 第二种方式: 执行更清晰和类型安全的代码
              */
             MacDao macDao = session.getMapper(MacDao.class);
-            List<BlackMacinfo> user = macDao.getAll();
+            List<BlackMacinfo> user = macDao.getById(10);
             System.out.println(user);
         }
         finally {

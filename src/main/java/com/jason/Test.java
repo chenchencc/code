@@ -1,33 +1,33 @@
 package com.jason;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.TreeMap;
 
 public class Test {
     public static void main(String[] args) {
-        /*BigDecimal b = new BigDecimal(1561165);
-        BigDecimal b1 = new BigDecimal(19);
+        TreeMap<P,P> map = new TreeMap<>();
+        P p1 = new P("j",1);
+        P p2 = new P("k",2);
+        P p3 = new P("l",3);
 
-        //double avgDuration = b.divide(b1,4,BigDecimal.ROUND_HALF_UP).doubleValue();
-        System.out.println(b.setScale(0,BigDecimal.ROUND_HALF_UP).intValue());
-        System.out.println(Math.floor(4165156.65151));*/
+//        map.put(p1,p1);
+//        map.put(p2,p2);
+        //map.put(null,p3);
 
-        String s  = "asas";
-        StringBuilder ss = new StringBuilder();
-        ss.append(new byte[]{1,2,3});
-        String.valueOf(new byte[]{1,2,3});
-        System.out.println(ss);
+        LinkedHashMap mm = new LinkedHashMap();
+        HashSet<String> set = new HashSet<>();
+        set.add("aaa");
+        System.out.println(set.add("aaa"));
+    }
+}
+class P{
+    String name;
+    int age;
 
-        Map<String,String> map = new HashMap<>();
-        map.put("1","11");
-        map.put("2","22");
-        map.put("3","33");
-        map.put("4","44");
-
-        List<String> li = map.values().stream().collect(Collectors.toList());
-        li.forEach(System.out::println);
+    public P(String name, int age) {
+        this.name = name;
+        this.age = age;
     }
 }
