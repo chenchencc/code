@@ -14,4 +14,6 @@ public interface MacDao {
     String findByMac(Map<String,Object> map);
 
     List<BlackMacinfo> getById(long id);
+
+    //List<BlackMacinfo> getById(String id);
 }

@@ -5,7 +5,7 @@
 
 
     <!-- 获取实体 WHERE storeId=#{storeId}-->
-    <select id="getAll" resultType="string" parameterType="long">
+    <select id="getAll" resultType="string" parameterType="long" useCache="true">
         SELECT mac FROM nr_black_mac
     </select>
 
@@ -16,6 +16,10 @@
 
     <select id="getById" parameterType="long" resultType="com.jason.domain.BlackMacinfo">
         SELECT id,storeId,mac FROM nr_black_mac where id=#{id}
+    </select>
+
+    <select id="getById1" parameterType="string" resultType="com.jason.domain.BlackMacinfo">
+        SELECT id,storeId,mac FROM nr_black_mac where mac=#{mac}
     </select>
 
     <select id="findByMac" parameterType="map" resultType="string">
