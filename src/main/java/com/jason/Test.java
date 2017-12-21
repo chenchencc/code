@@ -24,16 +24,6 @@ public class Test {
         s = "音量键";//38577266
         s = "静音键";//38478004
         s = "耳机孔";//32381645
-        LinkedHashMap mm = new LinkedHashMap();
-        HashSet<String> set = new HashSet<>();
-        set.add("aaa");
-        System.out.println(set.add("aaa"));
-    }
-}
-class P{
-    String name;
-    int age;
-
         s = "指纹解锁";//787539856
         s = "前后摄像头";//-1350798712
 
@@ -49,10 +39,8 @@ class P{
         s = "表带原装";//1064162372
         s = "表带材质";//1064319766
 
-
-
-        System.out.println(s.hashCode());
     }
+
 
     static final Map<Integer,String> map = new HashMap<>();
     static {
