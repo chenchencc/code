@@ -1,7 +1,5 @@
 package com.jason.jvm;
 
-import sun.management.HotspotClassLoadingMBean;
-import sun.management.VMManagement;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
