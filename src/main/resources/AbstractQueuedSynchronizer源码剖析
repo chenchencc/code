@@ -7,7 +7,7 @@
      private transient volatile AbstractQueuedSynchronizer.Node head;
      //等待队列中的尾节点
      private transient volatile AbstractQueuedSynchronizer.Node tail;
-     //节点状态(为什么是int呢？因为int是32位的，平台无法保证64位的是原子操作，但是也可以long64位的，但是很多平台都是通过内部锁来模拟实现确保原子操作，但是会影响同步器的性能)
+     //同步状态(为什么是int呢？因为int是32位的，平台无法保证64位的是原子操作，但是也可以long64位的，但是很多平台都是通过内部锁来模拟实现确保原子操作，但是会影响同步器的性能)
      private volatile int state;
      //同步器采用了自旋锁(CLH) 自旋超时时间
      static final long spinForTimeoutThreshold = 1000L;
@@ -26,7 +26,7 @@
 
      protected AbstractQueuedSynchronizer() {
      }
-     //获取状态
+     //获取同步状态
      protected final int getState() {
          return this.state;
      }
@@ -38,7 +38,7 @@
      protected final boolean compareAndSetState(int var1, int var2) {
          return unsafe.compareAndSwapInt(this, stateOffset, var1, var2);
      }
-     //入队列
+     //入队列,如果头节点为空，则创建一个节点并将它设为头节点，然后再将var1添加到队尾
      private AbstractQueuedSynchronizer.Node enq(AbstractQueuedSynchronizer.Node var1) {
          //自旋的方式 直到入队成功
          while(true) {
@@ -54,7 +54,7 @@
               //尾节点不为空
              } else {
                  var1.prev = var2;
-                 //原子设置尾节点
+                 //原子设置尾节点，成功则返回，不成功说明有并发，则自旋直到成功设置队尾
                  if (this.compareAndSetTail(var2, var1)) {
                      //将var1节点添加到队尾并返回
                      var2.next = var1;
@@ -65,22 +65,27 @@
      }
      //添加等待节点
      private AbstractQueuedSynchronizer.Node addWaiter(AbstractQueuedSynchronizer.Node var1) {
-         //将var1节点和当前线程绑定到var2节点上
+         //将var1节点和当前线程封装为一个node
          AbstractQueuedSynchronizer.Node var2 = new AbstractQueuedSynchronizer.Node(Thread.currentThread(), var1);
          //将尾节点赋给var3
          AbstractQueuedSynchronizer.Node var3 = this.tail;
+         //尾节点不为空
          if (var3 != null) {
+             //将尾节点var3赋给新创建的var2节点的前驱
              var2.prev = var3;
+             //原子设置队列的尾节点，将新创建的var2节点设置为队尾节点
              if (this.compareAndSetTail(var3, var2)) {
+                 //将var2赋给以前队尾的next并返回新创建的var2
                  var3.next = var2;
                  return var2;
              }
          }
-
+         //如果尾节点为空或在原子设置尾节点时失败，则调用enq自旋进行设置
          this.enq(var2);
          return var2;
      }
 
+     //设置head
      private void setHead(AbstractQueuedSynchronizer.Node var1) {
          this.head = var1;
          var1.thread = null;
@@ -88,8 +93,11 @@
      }
 
      private void unparkSuccessor(AbstractQueuedSynchronizer.Node var1) {
+         //获取var1节点的状态
          int var2 = var1.waitStatus;
+         //节点庄他小于0，则是
          if (var2 < 0) {
+         //将var1节点状态设置为0
              compareAndSetWaitStatus(var1, var2, 0);
          }
 
@@ -110,6 +118,7 @@
 
      }
 
+//释放共享锁
      private void doReleaseShared() {
          while(true) {
              AbstractQueuedSynchronizer.Node var1 = this.head;
@@ -1129,8 +1138,9 @@
          }
      }
 
-    AbstractQueuedSynchronizer的内部类，该类主要是用来表示阻塞队列(双端的)，该类主要有Node节点的线程、节点状态status(1 取消，-1 待唤醒，-2条件，-3 往后传播，0 表示当前节点在等待队列中等待获取锁)
-
+    AbstractQueuedSynchronizer的内部类，该类主要是用来表示阻塞队列(双端的)，
+    该类主要有Node节点的线程、节点状态status(1 取消，-1 待唤醒，-2条件，-3 往后传播，
+    0 表示当前节点在等待队列中等待获取锁)
     static final class Node {
         Node节点的模型是共享的
         static final AbstractQueuedLongSynchronizer.Node SHARED = new AbstractQueuedLongSynchronizer.Node();
