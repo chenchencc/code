@@ -133,8 +133,9 @@ public class Sort23 {
             tmp[k++] = a[i++];
         while (j<=right)
             tmp[k++] = a[j++];
-        for (int p=0;p<tmp.length;p++)
+        for (int p=0;p<tmp.length;p++){
             a[left+p] = tmp[p];
+        }
     }
 
     @Test

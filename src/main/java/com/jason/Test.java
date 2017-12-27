@@ -38,6 +38,8 @@ public class Test {
         s = "表扣材质";//1065362451
         s = "表带原装";//1064162372
         s = "表带材质";//1064319766
+        s="原装";//698630
+        System.out.println(s.hashCode());
 
     }
 
