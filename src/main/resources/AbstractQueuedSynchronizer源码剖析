@@ -65,7 +65,9 @@
      }
      //添加等待节点
      private AbstractQueuedSynchronizer.Node addWaiter(AbstractQueuedSynchronizer.Node var1) {
+         //将var1节点和当前线程绑定到var2节点上
          AbstractQueuedSynchronizer.Node var2 = new AbstractQueuedSynchronizer.Node(Thread.currentThread(), var1);
+         //将尾节点赋给var3
          AbstractQueuedSynchronizer.Node var3 = this.tail;
          if (var3 != null) {
              var2.prev = var3;
