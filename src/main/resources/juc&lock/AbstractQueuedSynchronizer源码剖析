@@ -97,38 +97,43 @@
          int var2 = var1.waitStatus;
          //节点庄他小于0，则是
          if (var2 < 0) {
-         //将var1节点状态设置为0
+         //将var1节点状态设置为0即等待获取锁
              compareAndSetWaitStatus(var1, var2, 0);
          }
-
+         //获取var1的next节点
          AbstractQueuedSynchronizer.Node var3 = var1.next;
+         //如果节点为空或者节点状态大于0(取消)
          if (var3 == null || var3.waitStatus > 0) {
              var3 = null;
-
+             //从尾往前寻找waitStatus小于0且是var1的后置节点
              for(AbstractQueuedSynchronizer.Node var4 = this.tail; var4 != null && var4 != var1; var4 = var4.prev) {
                  if (var4.waitStatus <= 0) {
                      var3 = var4;
                  }
              }
          }
-
+         //
          if (var3 != null) {
              LockSupport.unpark(var3.thread);
          }
 
      }
 
-//释放共享锁
+     //释放共享锁
      private void doReleaseShared() {
          while(true) {
+             //获取头节点
              AbstractQueuedSynchronizer.Node var1 = this.head;
              if (var1 != null && var1 != this.tail) {
+                 //头节点状态
                  int var2 = var1.waitStatus;
+                 //节点状态是等待唤醒时，那就将状态改为等待获取锁
                  if (var2 == -1) {
+                     //原子设置节点状态
                      if (!compareAndSetWaitStatus(var1, -1, 0)) {
                          continue;
                      }
-
+                     //唤醒继任者
                      this.unparkSuccessor(var1);
                  } else if (var2 == 0 && !compareAndSetWaitStatus(var1, 0, -3)) {
                      continue;
@@ -212,15 +217,16 @@
          }
      }
 
+     //设置当前线程中断
      static void selfInterrupt() {
          Thread.currentThread().interrupt();
      }
-
+     //线程挂起并检查中断
      private final boolean parkAndCheckInterrupt() {
          LockSupport.park(this);
          return Thread.interrupted();
      }
-
+     //获取队列
      final boolean acquireQueued(AbstractQueuedSynchronizer.Node var1, int var2) {
          boolean var3 = true;
 
@@ -228,8 +234,11 @@
              boolean var4 = false;
 
              while(true) {
+             //获取var1的前驱节点
                  AbstractQueuedSynchronizer.Node var5 = var1.predecessor();
+                 //var5等于head并且成功获取到锁
                  if (var5 == this.head && this.tryAcquire(var2)) {
+                     //设置head
                      this.setHead(var1);
                      var5.next = null;
                      var3 = false;
@@ -794,16 +803,18 @@
          }
      }
 
+     //条件等待对象
      public class ConditionObject implements Condition, Serializable {
          private static final long serialVersionUID = 1173984872572414699L;
-         private transient AbstractQueuedSynchronizer.Node firstWaiter;
-         private transient AbstractQueuedSynchronizer.Node lastWaiter;
+         private transient AbstractQueuedSynchronizer.Node firstWaiter;//first等待着
+         private transient AbstractQueuedSynchronizer.Node lastWaiter;//最后一个等待着
          private static final int REINTERRUPT = 1;
          private static final int THROW_IE = -1;
 
          public ConditionObject() {
          }
 
+         //向队列中添加一个条件等待对象
          private AbstractQueuedSynchronizer.Node addConditionWaiter() {
              AbstractQueuedSynchronizer.Node var1 = this.lastWaiter;
              if (var1 != null && var1.waitStatus != -2) {
@@ -1118,7 +1129,9 @@
              }
          }
 
+         //获取等待线程
          protected final Collection<Thread> getWaitingThreads() {
+              //判断是不是独占的
              if (!AbstractQueuedSynchronizer.this.isHeldExclusively()) {
                  throw new IllegalMonitorStateException();
              } else {
