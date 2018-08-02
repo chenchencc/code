@@ -2,6 +2,7 @@ package com.jason.java8;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class Test {
 
@@ -13,5 +14,11 @@ public class Test {
         li.add(1);
         long s = li.stream().reduce((a,b)->a+b).get();
         System.out.println(s);
+    }
+
+    @org.junit.Test
+    public void map(){
+        List<String> li = null;
+        Optional.ofNullable(li).ifPresent(l->{l.stream().forEach(System.out::print);});
     }
 }
