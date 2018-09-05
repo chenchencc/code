@@ -27,6 +27,13 @@ class Structor(var name : String = "12",val age : Int,face : String) {
     face
   }
 
+
+  def test() : String = {
+    "a"
+  }
+
+  def print(name :String*):Unit={}
+
 }
 object Structor{
   def main(args: Array[String]): Unit = {
