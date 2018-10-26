@@ -1,0 +1,87 @@
+Classfile /Users/chenchen/code/code/src/main/java/com/jason/bytecode/Loop.class
+  Last modified 2018-10-14; size 496 bytes
+  MD5 checksum cabdcc63c4e6eb1bfa23c8d3c860df0d
+  Compiled from "Loop.java"
+public class com.jason.bytecode.Loop
+  minor version: 0
+  major version: 52
+  flags: ACC_PUBLIC, ACC_SUPER
+Constant pool:
+   #1 = Methodref          #5.#16         // java/lang/Object."<init>":()V
+   #2 = Fieldref           #17.#18        // java/lang/System.out:Ljava/io/PrintStream;
+   #3 = Methodref          #19.#20        // java/io/PrintStream.println:(I)V
+   #4 = Class              #21            // com/jason/bytecode/Loop
+   #5 = Class              #22            // java/lang/Object
+   #6 = Utf8               <init>
+   #7 = Utf8               ()V
+   #8 = Utf8               Code
+   #9 = Utf8               LineNumberTable
+  #10 = Utf8               main
+  #11 = Utf8               ([Ljava/lang/String;)V
+  #12 = Utf8               loop
+  #13 = Utf8               StackMapTable
+  #14 = Utf8               SourceFile
+  #15 = Utf8               Loop.java
+  #16 = NameAndType        #6:#7          // "<init>":()V
+  #17 = Class              #23            // java/lang/System
+  #18 = NameAndType        #24:#25        // out:Ljava/io/PrintStream;
+  #19 = Class              #26            // java/io/PrintStream
+  #20 = NameAndType        #27:#28        // println:(I)V
+  #21 = Utf8               com/jason/bytecode/Loop
+  #22 = Utf8               java/lang/Object
+  #23 = Utf8               java/lang/System
+  #24 = Utf8               out
+  #25 = Utf8               Ljava/io/PrintStream;
+  #26 = Utf8               java/io/PrintStream
+  #27 = Utf8               println
+  #28 = Utf8               (I)V
+{
+  public com.jason.bytecode.Loop();
+    descriptor: ()V
+    flags: ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return
+      LineNumberTable:
+        line 3: 0
+
+  public static void main(java.lang.String[]);
+    descriptor: ([Ljava/lang/String;)V
+    flags: ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=0, locals=1, args_size=1
+         0: return
+      LineNumberTable:
+        line 6: 0
+
+  public void loop();
+    descriptor: ()V
+    flags: ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=1
+         0: iconst_0
+         1: istore_1
+         2: iload_1
+         3: bipush        100
+         5: if_icmpge     21
+         8: getstatic     #2                  // Field java/lang/System.out:Ljava/io/PrintStream;
+        11: iload_1
+        12: invokevirtual #3                  // Method java/io/PrintStream.println:(I)V
+        15: iinc          1, 1
+        18: goto          2
+        21: return
+      LineNumberTable:
+        line 9: 0
+        line 10: 8
+        line 9: 15
+        line 12: 21
+      StackMapTable: number_of_entries = 2
+        frame_type = 252 /* append */
+          offset_delta = 2
+          locals = [ int ]
+        frame_type = 250 /* chop */
+          offset_delta = 18
+}
+SourceFile: "Loop.java"

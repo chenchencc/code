@@ -1,6 +1,5 @@
-package com.jason.Spring.bean;
+package com.jason.spring.bean;
 
-import org.springframework.beans.BeansException;
 import org.springframework.beans.PropertyValues;
 import org.springframework.beans.factory.*;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;

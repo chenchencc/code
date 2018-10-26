@@ -1,10 +1,6 @@
-package com.jason.Spring.bean;
+package com.jason.spring.bean;
 
 import com.google.common.collect.Lists;
-import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.BeanFactory;
-import org.springframework.beans.factory.xml.XmlBeanFactory;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.List;
 

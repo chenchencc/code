@@ -25,7 +25,7 @@
     </bean>-->
    <!-- <tx:annotation-driven transaction-manager="transactionManager"/>-->
 
-    <bean id="bean" class="com.jason.Spring.bean.BeanTest"/>
+    <bean id="bean" class="com.jason.spring.bean.BeanTest"/>
 
-    <bean class="com.jason.Spring.bean.SpringBeanLifeCycle" init-method="init" destroy-method="destoryed"/>
+    <bean class="com.jason.spring.bean.SpringBeanLifeCycle" init-method="init" destroy-method="destoryed"/>
 </beans>

@@ -1,4 +1,4 @@
-package com.jason.Spring.bean;
+package com.jason.spring.bean;
 
 public class BeanTest {
 
