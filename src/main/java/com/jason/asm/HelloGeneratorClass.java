@@ -225,7 +225,7 @@ public class HelloGeneratorClass implements Opcodes {
         try {
             byte[] data = generatorHelloClass();
             System.out.println(new String(data));
-            File file = new File("/Users/chenchen/code/classcode/enhancecode/Hello.class");
+            File file = new File("/Users/chenchen/code/code/src/main/java/com/jason/asm/Hello");
             FileOutputStream fos = new FileOutputStream(file);
             fos.write(data);
             fos.close();
